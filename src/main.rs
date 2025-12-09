@@ -2,6 +2,7 @@ mod api;
 mod config;
 mod domain;
 mod startup;
+mod tasks;
 
 use config::Settings;
 

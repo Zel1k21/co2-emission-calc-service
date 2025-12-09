@@ -15,7 +15,8 @@
 **Request:**
 ```json
 {
-    "auth_token": "string",
-    "input_fields": [float],
-    "stage_constants": [float]
+    "id": integer,
+    "auth_token": string,
+    "input_fields": float[],
+    "stage_constants": float[]
 }

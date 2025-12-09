@@ -3,6 +3,8 @@ use validator::Validate;
 
 #[derive(Deserialize, Validate, Debug)]
 pub struct CalcRequest {
+    pub id: i32,
+
     #[validate(length(min = 1, message = "Auth token must not be empty"))]
     pub auth_token: String,
 
@@ -14,6 +16,12 @@ pub struct CalcRequest {
 }
 
 #[derive(Serialize)]
+pub struct ApiMessage {
+    pub message: String,
+}
+
+#[derive(Serialize)]
 pub struct CalcResponse {
+    pub request_id: i32,
     pub calculation_result: f32,
 }

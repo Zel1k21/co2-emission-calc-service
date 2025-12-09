@@ -1,10 +1,11 @@
 use rand::Rng;
+use std::env;
 use tokio::time::{Duration, sleep};
 use validator::Validate;
 
 pub async fn calculate_emission(req: &crate::domain::models::CalcRequest) -> f32 {
     req.validate().unwrap();
-    if req.auth_token.is_empty() {
+    if req.auth_token == env::var("ASYNC_TOKEN").unwrap() {
         return 0.0;
     }
     // Set random delay from 5 to 10 seconds
@@ -25,6 +26,7 @@ mod tests {
     #[tokio::test]
     async fn test_calculation() {
         let request = CalcRequest {
+            id: 1,
             auth_token: "test_token".to_string(),
             input_fields: vec![1.0, 2.0, 3.0],
             stage_constants: vec![0.5, 1.0, 1.5],
